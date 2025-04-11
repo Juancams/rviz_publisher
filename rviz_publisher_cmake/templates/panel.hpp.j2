@@ -1,0 +1,49 @@
+#include <rclcpp/rclcpp.hpp>
+#include <rviz_common/panel.hpp>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QTreeWidget>
+#include <QLabel>
+#include <QTabWidget>
+#include <thread>
+#include <map>
+
+{message_includes}
+
+namespace {project_name}
+{{
+
+class RvizPublisherPanel : public rviz_common::Panel
+{{
+    Q_OBJECT
+public:
+  explicit RvizPublisherPanel(QWidget * parent = 0);
+  virtual ~RvizPublisherPanel();
+
+  void onInitialize() override;
+
+protected:
+  QVBoxLayout * layout_;
+  QTreeWidget * tree_widget_;
+  QLabel * label_info_;
+  QTabWidget * tab_widget_;
+  QPushButton * button_activate_;
+  QPushButton * button_deactivate_;
+  QPushButton * button_create_;
+  QPushButton * button_delete_;
+  QLineEdit * line_edit_topic_;
+  QTreeWidget * topic_box_;
+  QLabel * type_label_;
+
+private:
+{publisher_declarations}
+
+  void setupPublishers();
+
+  rclcpp::Node::SharedPtr node_;
+  std::thread spin_thread_;
+  std::map<std::string, rclcpp::PublisherBase::SharedPtr> publishers_;
+}};
+
+}} // namespace {project_name}

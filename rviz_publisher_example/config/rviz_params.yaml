@@ -1,0 +1,6 @@
+panel:
+  publishers:
+    - topic: "/example"
+      type: "std_msgs/msg/String"
+    - topic: "/cmd_vel"
+      type: "geometry_msgs/msg/Twist"

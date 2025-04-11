@@ -1,0 +1,41 @@
+#include "{project_name}/RvizPublisherPanel.hpp"
+
+#include <pluginlib/class_list_macros.hpp>
+
+namespace {project_name}
+{{
+
+RvizPublisherPanel::RvizPublisherPanel(QWidget * parent)
+: rviz_common::Panel(parent)
+{{
+  node_ = rclcpp::Node::make_shared("rviz_publisher_panel");
+
+  tab_widget_ = new QTabWidget();
+  layout_ = new QVBoxLayout();
+  layout_->addWidget(tab_widget_);
+  setLayout(layout_);
+
+  setupPublishers();
+
+  spin_thread_ = std::thread([this]() {{
+    rclcpp::spin(node_);
+  }});
+}}
+
+RvizPublisherPanel::~RvizPublisherPanel()
+{{
+  spin_thread_.join();
+}}
+
+void RvizPublisherPanel::setupPublishers()
+{{
+{publisher_initializations}
+}}
+
+void RvizPublisherPanel::onInitialize()
+{{
+}}
+
+}}  // namespace {project_name}
+
+PLUGINLIB_EXPORT_CLASS({project_name}::RvizPublisherPanel, rviz_common::Panel)
