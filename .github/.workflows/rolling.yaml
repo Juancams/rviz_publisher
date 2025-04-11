@@ -1,0 +1,27 @@
+name: rolling
+
+on:
+  push:
+    branches:
+      - rolling
+  pull_request:
+    branches:
+      - rolling
+
+jobs:
+  ROS2:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup ROS 2 environment
+        uses: ros-tooling/setup-ros@0.7.10
+        with:
+          ros-distro: rolling
+
+      - name: Build ROS 2 package
+        uses: ros-tooling/action-ros-ci@0.4.1
+        with:
+          package-name: rviz_publisher rviz_publisher_cmake rviz_publisher_example
+          target-ros2-distro: rolling
