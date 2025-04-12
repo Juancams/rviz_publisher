@@ -1,6 +1,21 @@
 panel:
-  publishers:
-    - topic: "/example"
-      type: "std_msgs/msg/String"
-    - topic: "/cmd_vel"
-      type: "geometry_msgs/msg/Twist"
+  - name: "Hello"
+    topic: "/example"
+    topic_type: "std_msgs/msg/String"
+    message:
+      data: "Hello, world!"
+  - name: "Forward"
+    topic: "/cmd_vel"
+    topic_type: "geometry_msgs/msg/Twist"
+    message:
+      linear:
+        x: 0.5
+  - name: "Move"
+    topic: "/cmd_vel"
+    topic_type: "geometry_msgs/msg/Twist"
+    message:
+      linear:
+        x: 0.5
+        y: 0.0
+      angular:
+        z: 0.5
