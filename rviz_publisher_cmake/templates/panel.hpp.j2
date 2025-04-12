@@ -25,21 +25,13 @@ public:
 
 protected:
   QVBoxLayout * layout_;
-  QTreeWidget * tree_widget_;
-  QLabel * label_info_;
-  QTabWidget * tab_widget_;
-  QPushButton * button_activate_;
-  QPushButton * button_deactivate_;
-  QPushButton * button_create_;
-  QPushButton * button_delete_;
-  QLineEdit * line_edit_topic_;
-  QTreeWidget * topic_box_;
-  QLabel * type_label_;
 
 private:
 {publisher_declarations}
+{button_declarations}
 
   void setupPublishers();
+  void setupButtons();
 
   rclcpp::Node::SharedPtr node_;
   std::thread spin_thread_;
