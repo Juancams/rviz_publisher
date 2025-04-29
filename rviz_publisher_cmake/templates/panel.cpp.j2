@@ -9,8 +9,17 @@ RvizPublisherPanel::RvizPublisherPanel(QWidget * parent)
 {{
   node_ = rclcpp::Node::make_shared("rviz_publisher_panel");
 
+  QVBoxLayout * main_layout = new QVBoxLayout();
+  QScrollArea * scroll_area = new QScrollArea();
+  QWidget * scroll_widget = new QWidget();
   layout_ = new QVBoxLayout();
-  setLayout(layout_);
+
+  scroll_widget->setLayout(layout_);
+  scroll_area->setWidget(scroll_widget);
+  scroll_area->setWidgetResizable(true);
+  main_layout->addWidget(scroll_area);
+
+  setLayout(main_layout);
 
   setupPublishers();
   setupButtons();

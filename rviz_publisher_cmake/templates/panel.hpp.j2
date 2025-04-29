@@ -2,12 +2,7 @@
 #include <rviz_common/panel.hpp>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include <QLineEdit>
-#include <QTreeWidget>
-#include <QLabel>
-#include <QTabWidget>
-#include <thread>
-#include <map>
+#include <QScrollArea>
 
 {message_includes}
 
@@ -35,7 +30,6 @@ private:
 
   rclcpp::Node::SharedPtr node_;
   std::thread spin_thread_;
-  std::map<std::string, rclcpp::PublisherBase::SharedPtr> publishers_;
 }};
 
 }} // namespace {project_name}
