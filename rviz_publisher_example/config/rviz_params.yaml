@@ -10,6 +10,10 @@ panel:
     message:
       linear:
         x: 0.5
+    qos:
+      reliability: "reliable"
+      durability: "transient_local"
+      history: "keep_all"
   - name: "Move"
     topic: "/cmd_vel"
     topic_type: "geometry_msgs/msg/Twist"
@@ -19,3 +23,9 @@ panel:
         y: 0.0
       angular:
         z: 0.5
+    qos:
+      reliability: "best_effort"
+      durability: "volatile"
+      history: "keep_last"
+      depth: 10
+      
